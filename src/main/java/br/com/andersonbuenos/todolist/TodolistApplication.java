@@ -1,4 +1,4 @@
-package br.com.andersonbunos.todolist;
+package br.com.andersonbuenos.todolist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
