@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
-	<groupId>br.com.andersonbunos</groupId>
+	<groupId>br.com.andersonbuenos</groupId>
 		<artifactId>todolist</artifactId>
 		<version>1.0.0</version>
 		<name>todolist</name>

@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.config.Task;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.andersonbuenos.todolist.utils.utils;
+import br.com.andersonbuenos.todolist.utils.Utils;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
@@ -75,7 +74,7 @@ public class TaskController {
         }
         
         
-        utils.copyNonNullProperties(taskModel, task);
+        Utils.copyNonNullProperties(taskModel, task);
         var taskUpdate = this.taskRepository.save(task);
         return ResponseEntity.ok().body((taskUpdate));
    }

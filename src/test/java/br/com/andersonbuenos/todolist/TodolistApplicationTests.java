@@ -1,4 +1,4 @@
-package br.com.andersonbunos.todolist;
+package br.com.andersonbuenos.todolist;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
