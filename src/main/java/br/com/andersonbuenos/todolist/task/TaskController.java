@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.andersonbuenos.todolist.utils.utils;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.var;
 
 @RestController
 @RequestMapping("/tasks")
@@ -59,15 +58,25 @@ public class TaskController {
 
    //http://localhost:8080/tasks/96363f44-acb2-4085-9487-6442e7ac6307
     @PutMapping("/{id}")
-    public TaskModel update(@RequestBody TaskModel taskModel,
+    public ResponseEntity update(@RequestBody TaskModel taskModel,
         @PathVariable UUID id, HttpServletRequest request){
+        var task = this.taskRepository.findById(id).orElse(null);
+
+        if (task == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("Tarefa não encontrada");
+        }
+                
         var idUser = request.getAttribute("idUser");
 
-        var task = this.taskRepository.findById(id).orElse(null);
+        if (!task.getIdUser().equals(idUser)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("Usuário sem permissão para alterar essa tarefa");
+        }
+        
         
         utils.copyNonNullProperties(taskModel, task);
-        
-
-        return this.taskRepository.save(task);
+        var taskUpdate = this.taskRepository.save(task);
+        return ResponseEntity.ok().body((taskUpdate));
    }
 }
